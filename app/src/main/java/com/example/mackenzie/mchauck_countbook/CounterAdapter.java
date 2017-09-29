@@ -83,7 +83,11 @@ public class CounterAdapter extends RecyclerView.Adapter<CounterAdapter.MyViewHo
             @Override
             public void onClick(View v) {
                 // go to the edit action...
-                //Intent i = new Intent(CounterListActivity.class, CounterEditActivity.class);
+                // example from: https://stackoverflow.com/a/37186975/8001779
+                // 2017-09-29
+                Intent intent = new Intent(v.getContext(), CounterAddActivity.class);
+
+                v.getContext().startActivity(intent);
 
             }
         });
