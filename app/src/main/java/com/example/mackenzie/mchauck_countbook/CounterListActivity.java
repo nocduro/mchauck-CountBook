@@ -1,5 +1,6 @@
 package com.example.mackenzie.mchauck_countbook;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
@@ -16,14 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CounterListActivity extends AppCompatActivity {
-    // follow some example code from: https://developer.android.com/training/material/lists-cards.html
+    // follow some example code from: https://www.androidhive.info/2016/01/android-working-with-recycler-view/
     // 2017-09-28
 
     private List<Counter> counterList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CounterAdapter mAdapter;
-    //private RecyclerView.Adapter mAdapter;
-    //private RecyclerView.LayoutManager mLayoutManager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +39,14 @@ public class CounterListActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+        // disable the animation when the counter changes, to increase responsiveness
+        // from: https://stackoverflow.com/questions/31897469/override-animation-for-notifyitemchanged-in-recyclerview-adapter
+        // 2017-09-29
+        ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
 
         counterList.add(new Counter("test1", 0, "this is only a test..."));
         counterList.add(new Counter("Hello!", 3));
+        counterList.add(new Counter("This counter has a long comment", 1000, "this is a very long comment to see what will happen when we run into the date..."));
         mAdapter.notifyDataSetChanged();
 
 
@@ -50,8 +55,8 @@ public class CounterListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent i = new Intent(CounterListActivity.this, CounterAddActivity.class);
+                CounterListActivity.this.startActivity(i);
             }
         });
     }
