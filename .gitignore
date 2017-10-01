@@ -1,10 +1,12 @@
 
 # Created by https://www.gitignore.io/api/android,androidstudio
 
+!app/build/outputs/apk/app-debug.apk
+
 ### Android ###
 # Built application files
-*.apk
-*.ap_
+#*.apk
+#*.ap_
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -79,10 +81,10 @@ gen-external-apklibs
 # Log Files
 
 # Android Studio
-/*/build/
+# /*/build/
 /*/local.properties
-/*/out
-/*/*/build
+# /*/out
+# /*/*/build
 /*/*/production
 *.ipr
 *~
