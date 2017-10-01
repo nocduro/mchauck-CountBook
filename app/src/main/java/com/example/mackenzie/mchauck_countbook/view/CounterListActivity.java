@@ -1,42 +1,57 @@
 package com.example.mackenzie.mchauck_countbook.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mackenzie.mchauck_countbook.R;
-import com.example.mackenzie.mchauck_countbook.controller.Controller;
 import com.example.mackenzie.mchauck_countbook.data.Counter;
 import com.example.mackenzie.mchauck_countbook.data.CounterTooSmall;
-import com.example.mackenzie.mchauck_countbook.data.TestCounterSource;
 import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CounterListActivity extends AppCompatActivity implements CounterViewInterface {
+
+public class CounterListActivity extends AppCompatActivity {
     // follow some example code from: https://www.androidhive.info/2016/01/android-working-with-recycler-view/
     // 2017-09-28
+
+    private final String FILENAME = "counters.json";
 
     private List<Counter> counterList = new ArrayList<>();
 
     private LayoutInflater layoutInflater;
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
-
-    private Controller controller;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,22 +71,10 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
             }
         });
 
-        controller = new Controller(this, new TestCounterSource());
-    }
-
-
-    @Override
-    public void startEditActivity(Counter counter, View viewRoot) {
-
-    }
-
-    @Override
-    public void setupAdapterAndView(List<Counter> counters) {
-        this.counterList = counters;
+        counterList = loadFromFile();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         recyclerView.setLayoutManager(layoutManager);
-
         adapter = new CustomAdapter();
         recyclerView.setAdapter(adapter);
 
@@ -79,13 +82,53 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
         // from: https://stackoverflow.com/questions/31897469/override-animation-for-notifyitemchanged-in-recyclerview-adapter
         // 2017-09-29
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-
     }
 
-    @Override
-    public void addNewCounterToView(Counter counter) {
+    private List<Counter> loadFromFile() {
+        Gson gson = new Gson();
+        ArrayList<Counter> list;
 
+        Type listType = new TypeToken<ArrayList<Counter>>(){}.getType();
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+
+            list = gson.fromJson(in, listType);
+        } catch (FileNotFoundException e) {
+            /*File f = new File(FILENAME);
+            try {
+                f.createNewFile();
+            } catch (IOException e1) {
+                throw new RuntimeException("Couldn't create counters.json");
+            }*/
+            list = new ArrayList<>();
+        } catch (JsonIOException e) {
+            list = new ArrayList<>();
+        }
+
+        return list;
     }
+
+    private void saveToFile(List<Counter> counters) {
+        Log.d("INFO", "saving to file");
+        this.counterList = counters;
+        Gson gson = new Gson();
+
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+
+            gson.toJson(counters, out);
+            out.flush();
+            fos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -109,6 +152,7 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
             counterList.set(modifiedCounterPosition, counter);
             adapter.notifyItemChanged(modifiedCounterPosition);
         }
+        saveToFile(counterList);
     }
 
     private class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
@@ -120,12 +164,13 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
         }
 
         @Override
-        public void onBindViewHolder(CustomAdapter.CustomViewHolder holder, final int position) {
+        public void onBindViewHolder(final CustomAdapter.CustomViewHolder holder, final int position) {
             final Counter counter = counterList.get(position);
             holder.name.setText(counter.getName());
             holder.comment.setText(counter.getComment());
             holder.count.setText(String.valueOf(counter.getCurrentValue()));
-            holder.date.setText(counter.getDate().toString());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            holder.date.setText(sdf.format(counter.getDate()));
 
             holder.increment.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -133,6 +178,7 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
                     Log.d("INFO", "increment btn");
                     counter.increment();
                     notifyItemChanged(position);
+                    saveToFile(counterList);
                 }
             });
 
@@ -143,29 +189,52 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
                     try {
                         counter.decrement();
                         notifyItemChanged(position);
+                        saveToFile(counterList);
                     } catch (CounterTooSmall e) {
                         Snackbar.make(v, "Counter can not be less than zero", Snackbar.LENGTH_LONG).show();
                     }
                 }
             });
 
-            holder.edit.setOnClickListener(new View.OnClickListener(){
+            holder.options.setOnClickListener(new View.OnClickListener() {
+                // code from: https://stackoverflow.com/questions/37601346/create-options-menu-for-recyclerview-item
+                // 2017-09-30
+
                 @Override
-                public void onClick(View v) {
-                    // go to the edit action...
-                    // example from: https://stackoverflow.com/a/37186975/8001779
-                    // 2017-09-29
+                public void onClick(final View view) {
+                    PopupMenu popup = new PopupMenu(view.getContext(), holder.options);
+                    popup.inflate(R.menu.counter);
+                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            int pos = holder.getAdapterPosition();
+                            switch (item.getItemId()) {
+                                case R.id.reset:
+                                    counter.reset();
+                                    notifyItemChanged(pos);
+                                    saveToFile(counterList);
+                                    break;
+                                case R.id.delete:
+                                    counterList.remove(pos);
+                                    notifyItemRemoved(pos);
+                                    saveToFile(counterList);
+                                    break;
+                                case R.id.edit:
+                                    Gson gson = new Gson();
+                                    Intent editIntent = new Intent(view.getContext(), CounterAddActivity.class);
 
-                    // serialize our counter so we can send it to another activity
-                    Gson gson = new Gson();
-
-                    Intent editIntent = new Intent(v.getContext(), CounterAddActivity.class);
-
-                    editIntent.putExtra("counter", gson.toJson(counter));
-                    editIntent.putExtra("position", position);
-                    startActivityForResult(editIntent, 3);
+                                    editIntent.putExtra("counter", gson.toJson(counter));
+                                    editIntent.putExtra("position", pos);
+                                    startActivityForResult(editIntent, 3);
+                                    break;
+                            }
+                            return false;
+                        }
+                    });
+                    popup.show();
                 }
             });
+
 
         }
 
@@ -176,9 +245,10 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
 
         class CustomViewHolder extends RecyclerView.ViewHolder {
             private TextView name, comment, count, date;
-            private Button increment, decrement, edit;
+            private Button increment, decrement;
+            private TextView options;
 
-            public CustomViewHolder(View itemView) {
+            private CustomViewHolder(View itemView) {
                 super(itemView);
                 name = (TextView) itemView.findViewById(R.id.counter_name);
                 comment = (TextView) itemView.findViewById(R.id.counter_comment);
@@ -187,7 +257,7 @@ public class CounterListActivity extends AppCompatActivity implements CounterVie
 
                 increment = (Button) itemView.findViewById(R.id.increment_button);
                 decrement = (Button) itemView.findViewById(R.id.decrement_button);
-                edit = (Button) itemView.findViewById(R.id.edit_button);
+                options = (TextView) itemView.findViewById(R.id.counter_options);
             }
         }
     }
