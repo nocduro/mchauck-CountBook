@@ -29,10 +29,12 @@ public class Counter {
 
     public void reset() {
         this.currentValue = this.initialValue;
+        this.date = new Date();
     }
 
     public void increment() {
         this.currentValue++;
+        this.date = new Date();
     }
 
     public void decrement() throws CounterTooSmall {
@@ -40,6 +42,7 @@ public class Counter {
             throw new CounterTooSmall();
         }
         this.currentValue--;
+        this.date = new Date();
     }
 
     public String getName() {
