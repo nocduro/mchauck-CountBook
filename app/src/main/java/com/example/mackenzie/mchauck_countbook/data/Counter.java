@@ -1,4 +1,4 @@
-package com.example.mackenzie.mchauck_countbook;
+package com.example.mackenzie.mchauck_countbook.data;
 
 import java.util.Date;
 
@@ -9,6 +9,7 @@ import java.util.Date;
 public class Counter {
     private String name;
     private Date date;
+
     private int currentValue;
     private int initialValue;
     private String comment;

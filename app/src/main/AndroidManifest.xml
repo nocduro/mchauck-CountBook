@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".CounterListActivity"
+            android:name=".view.CounterListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,13 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CounterAddActivity"
+            android:name=".view.CounterAddActivity"
             android:label="@string/title_activity_counter_add"
-            android:parentActivityName=".CounterListActivity"
+            android:parentActivityName=".view.CounterListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.mackenzie.mchauck_countbook.CounterListActivity" />
+                android:value="com.example.mackenzie.mchauck_countbook.view.CounterListActivity" />
         </activity>
     </application>
 

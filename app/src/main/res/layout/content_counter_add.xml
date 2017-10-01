@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.mackenzie.mchauck_countbook.CounterAddActivity"
+    tools:context="com.example.mackenzie.mchauck_countbook.view.CounterAddActivity"
     tools:showIn="@layout/activity_counter_add">
 
     <EditText
@@ -78,17 +78,17 @@
         app:layout_constraintTop_toBottomOf="@+id/initial_value" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/add_button"
         android:layout_width="358dp"
         android:layout_height="61dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/current_value"
-        app:layout_constraintVertical_bias="0.034"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" />
+        app:layout_constraintTop_toBottomOf="@+id/current_value"
+        app:layout_constraintVertical_bias="0.034" />
 
 </android.support.constraint.ConstraintLayout>

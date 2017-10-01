@@ -1,4 +1,4 @@
-package com.example.mackenzie.mchauck_countbook;
+package com.example.mackenzie.mchauck_countbook.data;
 
 /**
  * Created by Mackenzie on 2017-09-28.
