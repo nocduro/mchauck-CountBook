@@ -36,6 +36,7 @@ public class CounterAddActivity extends AppCompatActivity {
         comment = (EditText) findViewById(R.id.comment);
         initialValue = (EditText) findViewById(R.id.initial_value);
         currentValue = (EditText) findViewById(R.id.current_value);
+
         addButton = (Button) findViewById(R.id.add_button);
 
         Intent inputIntent = getIntent();
@@ -44,7 +45,6 @@ public class CounterAddActivity extends AppCompatActivity {
 
         if (inputIntent.hasExtra("counter")) {
             // editing a counter
-            Log.d("INFO", "editing counter...");
             setTitle("Edit Counter");
             addButton.setText("Save");
             counter = gson.fromJson(inputIntent.getStringExtra("counter"), Counter.class);
@@ -54,25 +54,30 @@ public class CounterAddActivity extends AppCompatActivity {
             initialValue.setText(String.valueOf(counter.getInitialValue()));
             currentValue.setText(String.valueOf(counter.getCurrentValue()));
 
+            // also include our position as an extra, so that we can call
+            // notifyItemChanged(position);
             returnIntent.putExtra("position", inputIntent.getIntExtra("position", -1));
-
+        } else {
+            // adding a new counter
+            counter = new Counter("temp", 0);
         }
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validateData()) {
-                    if (counter == null) {
-                        // if we are adding a new counter we have to initialize
-                        counter = new Counter(name.getText().toString(), Integer.parseInt(initialValue.getText().toString()));
-                    }
+                    counter.setName(name.getText().toString());
                     counter.setComment(comment.getText().toString());
 
                     String currentValString = currentValue.getText().toString();
                     try {
                         counter.setInitialValue(Integer.parseInt(initialValue.getText().toString()));
+
+                        // if we get input for currentValue, then set it, otherwise reset to initialValue
                         if (currentValString.length() != 0) {
                             counter.setCurrentValue(Integer.parseInt(currentValString));
+                        } else {
+                            counter.reset();
                         }
                     } catch (CounterTooSmall counterTooSmall) {
                         // already validated data before...
@@ -107,7 +112,7 @@ public class CounterAddActivity extends AppCompatActivity {
             result = false;
         }
 
-        // currentValue
+        // currentValue is optional, so only check if it is valid if something is there
         if (currentValue.getText().toString().length() > 0) {
             try {
                 if (Integer.parseInt(currentValue.getText().toString()) < 0) {

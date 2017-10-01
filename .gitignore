@@ -1,12 +1,10 @@
 
 # Created by https://www.gitignore.io/api/android,androidstudio
 
-!app/build/outputs/apk/app-debug.apk
-
 ### Android ###
 # Built application files
-#*.apk
-#*.ap_
+# *.apk
+# *.ap_
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -21,7 +19,7 @@ out/
 
 # Gradle files
 .gradle/
-build/
+/build
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -81,7 +79,10 @@ gen-external-apklibs
 # Log Files
 
 # Android Studio
-# /*/build/
+app/build/intermediates
+app/build/generated
+app/build/reports
+!/*/build/outputs/apk
 /*/local.properties
 # /*/out
 # /*/*/build
@@ -89,10 +90,6 @@ gen-external-apklibs
 *.ipr
 *~
 *.swp
-
-# Android Patch
-
-# External native build folder generated in Android Studio 2.2 and later
 
 # NDK
 obj/
@@ -127,10 +124,6 @@ obj/
 ehthumbs.db
 Thumbs.db
 
-# Legacy Eclipse project files
-.classpath
-.project
-
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
@@ -141,25 +134,4 @@ Thumbs.db
 # virtual machine crash logs (Reference: http://www.java.com/en/download/help/error_hotspot.xml)
 hs_err_pid*
 
-## Plugin-specific files:
-
-# mpeltonen/sbt-idea plugin
-.idea_modules/
-
-# JIRA plugin
-atlassian-ide-plugin.xml
-
-# Mongo Explorer plugin
-.idea/mongoSettings.xml
-
-# Crashlytics plugin (for Android Studio and IntelliJ)
-com_crashlytics_export_strings.xml
-crashlytics.properties
-crashlytics-build.properties
-fabric.properties
-
-### AndroidStudio Patch ###
-
 !/gradle/wrapper/gradle-wrapper.jar
-
-# End of https://www.gitignore.io/api/android,androidstudio

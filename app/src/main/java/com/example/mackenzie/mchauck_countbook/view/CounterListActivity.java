@@ -40,12 +40,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Tutorial partially followed from: https://github.com/BracketCove/RecyclerViewTutorial2017
+ *
+ */
 public class CounterListActivity extends AppCompatActivity {
     // follow some example code from: https://www.androidhive.info/2016/01/android-working-with-recycler-view/
     // 2017-09-28
 
     private final String FILENAME = "counters.json";
+    private final int EDIT_COUNTER_REQUEST_CODE = 1;
+    private final int ADD_COUNTER_REQUEST_CODE = 2;
 
     private List<Counter> counterList = new ArrayList<>();
 
@@ -53,11 +58,15 @@ public class CounterListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
 
+    private Gson gson;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_counter_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        gson = new Gson();
 
         recyclerView = (RecyclerView) findViewById(R.id.counter_recycler_view);
         layoutInflater = getLayoutInflater();
@@ -67,7 +76,7 @@ public class CounterListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CounterListActivity.this, CounterAddActivity.class);
-                CounterListActivity.this.startActivityForResult(intent, 2);
+                startActivityForResult(intent, ADD_COUNTER_REQUEST_CODE);
             }
         });
 
@@ -85,7 +94,6 @@ public class CounterListActivity extends AppCompatActivity {
     }
 
     private List<Counter> loadFromFile() {
-        Gson gson = new Gson();
         ArrayList<Counter> list;
 
         Type listType = new TypeToken<ArrayList<Counter>>(){}.getType();
@@ -95,12 +103,6 @@ public class CounterListActivity extends AppCompatActivity {
 
             list = gson.fromJson(in, listType);
         } catch (FileNotFoundException e) {
-            /*File f = new File(FILENAME);
-            try {
-                f.createNewFile();
-            } catch (IOException e1) {
-                throw new RuntimeException("Couldn't create counters.json");
-            }*/
             list = new ArrayList<>();
         } catch (JsonIOException e) {
             list = new ArrayList<>();
@@ -112,7 +114,6 @@ public class CounterListActivity extends AppCompatActivity {
     private void saveToFile(List<Counter> counters) {
         Log.d("INFO", "saving to file");
         this.counterList = counters;
-        Gson gson = new Gson();
 
         try {
             FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -132,15 +133,14 @@ public class CounterListActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Gson gson = new Gson();
-        if (requestCode == 2) {
+        if (requestCode == ADD_COUNTER_REQUEST_CODE) {
             // adding a new counter
             Log.d("INFO", "returned to main activity to add a new counter");
             Counter counter = gson.fromJson(data.getStringExtra("counter"), Counter.class);
             counterList.add(counter);
             adapter.notifyItemInserted(counterList.size() - 1);
             recyclerView.smoothScrollToPosition(counterList.size() - 1);
-        } else if (requestCode == 3) {
+        } else if (requestCode == EDIT_COUNTER_REQUEST_CODE) {
             // editing an existing counter
             int modifiedCounterPosition = data.getIntExtra("position", -1);
             if (modifiedCounterPosition == -1) {
@@ -225,7 +225,7 @@ public class CounterListActivity extends AppCompatActivity {
 
                                     editIntent.putExtra("counter", gson.toJson(counter));
                                     editIntent.putExtra("position", pos);
-                                    startActivityForResult(editIntent, 3);
+                                    startActivityForResult(editIntent, EDIT_COUNTER_REQUEST_CODE);
                                     break;
                             }
                             return false;

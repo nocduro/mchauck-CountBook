@@ -1,0 +1,115 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:2:1-33:12
+	package
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:3:5-54
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:2:11-69
+	android:versionCode
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+application
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:5:5-31:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Mackenzie\.android\build-cache\95a051a14f8c59a5d8c668f401b1bb1dd7166ee1\output\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:design:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\90c05af454c41e16eabe0709aa06157d5ebf691c\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\9657706826d71fd8e78302f52bf5111d88f5ba5e\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\9fabd4e58d4a40e468ac339a786e242deff2d8a6\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\6a32f5f2ff60d791cb140bf4e54b2e3e9cfe8dd7\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\e00b6280e93c4d20bd03af4378afab11912d5743\output\AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\56af871d66e5dca62bdbd149b5a44c335496ea07\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\f21deb6ef9d2704b272b47779acc82c6ccdda5ca\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\3a241d0b51fbb921c80a05240d21fa8e55b1798a\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\5a81d349f8b485eb0c2e83e7084459ad19485c74\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\64c0cf76c4ed04b850d6482d49c505a8f55cd6ff\output\AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\d43ccfc348c271812c607841c6621d50dbced517\output\AndroidManifest.xml:29:5-20
+	android:label
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:8:9-41
+	android:supportsRtl
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:10:9-35
+	android:roundIcon
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:9:9-54
+	android:allowBackup
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:6:9-35
+	android:icon
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:7:9-43
+	android:theme
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:11:9-40
+activity#com.example.mackenzie.mchauck_countbook.view.CounterListActivity
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:12:9-21:20
+	android:label
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:14:13-45
+	android:theme
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:15:13-56
+	android:name
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:13:13-53
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:16:13-20:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:17:17-69
+	android:name
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:17:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:19:17-77
+	android:name
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:19:27-74
+activity#com.example.mackenzie.mchauck_countbook.view.CounterAddActivity
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:22:9-30:20
+	android:label
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:24:13-63
+	android:parentActivityName
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:25:13-67
+	android:theme
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:26:13-56
+	android:name
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:23:13-52
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:27:13-29:100
+	android:value
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:29:17-97
+	android:name
+		ADDED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml:28:17-63
+uses-sdk
+INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Mackenzie\.android\build-cache\95a051a14f8c59a5d8c668f401b1bb1dd7166ee1\output\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:design:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\90c05af454c41e16eabe0709aa06157d5ebf691c\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\9657706826d71fd8e78302f52bf5111d88f5ba5e\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\9fabd4e58d4a40e468ac339a786e242deff2d8a6\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\6a32f5f2ff60d791cb140bf4e54b2e3e9cfe8dd7\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\6db9cd71c27e1678b822ae2804ea1cefa9259fe1\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\e00b6280e93c4d20bd03af4378afab11912d5743\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\56af871d66e5dca62bdbd149b5a44c335496ea07\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\f21deb6ef9d2704b272b47779acc82c6ccdda5ca\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\3a241d0b51fbb921c80a05240d21fa8e55b1798a\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\5a81d349f8b485eb0c2e83e7084459ad19485c74\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\64c0cf76c4ed04b850d6482d49c505a8f55cd6ff\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\d43ccfc348c271812c607841c6621d50dbced517\output\AndroidManifest.xml:21:5-23:58
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\90c05af454c41e16eabe0709aa06157d5ebf691c\output\AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\Mackenzie\AndroidStudioProjects\mchauck-CountBook\app\src\main\AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\90c05af454c41e16eabe0709aa06157d5ebf691c\output\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:appcompat-v7:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\9657706826d71fd8e78302f52bf5111d88f5ba5e\output\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:animated-vector-drawable:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\9fabd4e58d4a40e468ac339a786e242deff2d8a6\output\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-vector-drawable:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\6a32f5f2ff60d791cb140bf4e54b2e3e9cfe8dd7\output\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:recyclerview-v7:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\6db9cd71c27e1678b822ae2804ea1cefa9259fe1\output\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:transition:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\e00b6280e93c4d20bd03af4378afab11912d5743\output\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-v4:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\56af871d66e5dca62bdbd149b5a44c335496ea07\output\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-media-compat:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\f21deb6ef9d2704b272b47779acc82c6ccdda5ca\output\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-fragment:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\3a241d0b51fbb921c80a05240d21fa8e55b1798a\output\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-ui:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\5a81d349f8b485eb0c2e83e7084459ad19485c74\output\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-core-utils:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\64c0cf76c4ed04b850d6482d49c505a8f55cd6ff\output\AndroidManifest.xml:25:5-27:41
+MERGED from [com.android.support:support-compat:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\d43ccfc348c271812c607841c6621d50dbced517\output\AndroidManifest.xml:25:5-27:41
+	android:value
+		ADDED from [com.android.support:design:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\90c05af454c41e16eabe0709aa06157d5ebf691c\output\AndroidManifest.xml:27:9-38
+	android:name
+		ADDED from [com.android.support:design:26.0.0-alpha1] C:\Users\Mackenzie\.android\build-cache\90c05af454c41e16eabe0709aa06157d5ebf691c\output\AndroidManifest.xml:26:9-47
