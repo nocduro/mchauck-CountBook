@@ -3,9 +3,12 @@ package com.example.mackenzie.mchauck_countbook.data;
 import java.util.Date;
 
 /**
- * Created by Mackenzie on 2017-09-28.
+ * Contains a positive integer representing a counter, as well as the day the counter was
+ * last modified.
+ *
+ * The counter can be incremented, decremented, and reset to some initial value.
+ * Whenever the current value is updated the date is updated to the current day.
  */
-
 public class Counter {
     private String name;
     private Date date;

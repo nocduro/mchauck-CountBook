@@ -15,6 +15,12 @@ import com.example.mackenzie.mchauck_countbook.data.Counter;
 import com.example.mackenzie.mchauck_countbook.data.CounterTooSmall;
 import com.google.gson.Gson;
 
+/**
+ * Used to both add new Counters and edit them.
+ *
+ * Communicates with the list activity by serializing Counter objects.
+ * In the case of editing, we also pass the position back so that the list can update
+ */
 public class CounterAddActivity extends AppCompatActivity {
     Counter counter;
     Intent returnIntent;
@@ -79,37 +85,44 @@ public class CounterAddActivity extends AppCompatActivity {
                         } else {
                             counter.reset();
                         }
-                    } catch (CounterTooSmall counterTooSmall) {
+                    } catch (CounterTooSmall e) {
                         // already validated data before...
                     }
-
 
                     returnIntent.putExtra("counter", gson.toJson(counter));
                     setResult(Activity.RESULT_OK, returnIntent);
                     finish();
                 }
-
             }
         });
     }
 
+    /**
+     * Make sure the data input by the user in the forms is correct.
+     * Must have at least a Name, and an InitialValue.
+     * InitialValue, and CurrentValue must be positive integers.
+     *
+     * Will also set a visual error message for the fields that need to be fixed
+     *
+     * @return true if all of the fields are valid
+     */
     private boolean validateData() {
-        boolean result = true;
+        boolean valid = true;
 
         if (name.getText().toString().length() == 0) {
             name.setError("Name is required");
-            result = false;
+            valid = false;
         }
 
         // initialValue
         try {
             if (Integer.parseInt(initialValue.getText().toString()) < 0) {
                 initialValue.setError("Initial Value must be greater than 0");
-                result = false;
+                valid = false;
             }
         } catch (NumberFormatException e) {
             initialValue.setError("Initial Value must be a number");
-            result = false;
+            valid = false;
         }
 
         // currentValue is optional, so only check if it is valid if something is there
@@ -117,14 +130,14 @@ public class CounterAddActivity extends AppCompatActivity {
             try {
                 if (Integer.parseInt(currentValue.getText().toString()) < 0) {
                     currentValue.setError("Current Value must be greater than 0");
-                    result = false;
+                    valid = false;
                 }
             } catch (NumberFormatException e) {
                 currentValue.setError("Current Value must be a number");
-                result = false;
+                valid = false;
             }
         }
-        return result;
+        return valid;
     }
 
 }
