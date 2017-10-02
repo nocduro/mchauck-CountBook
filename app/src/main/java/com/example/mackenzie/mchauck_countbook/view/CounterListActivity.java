@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.example.mackenzie.mchauck_countbook.Controller;
 import com.example.mackenzie.mchauck_countbook.R;
 import com.example.mackenzie.mchauck_countbook.data.Counter;
-import com.example.mackenzie.mchauck_countbook.data.CounterDataSourceInterface;
+import com.example.mackenzie.mchauck_countbook.data.CounterDataSource;
 import com.example.mackenzie.mchauck_countbook.data.CounterTooSmall;
 import com.example.mackenzie.mchauck_countbook.data.GsonCounterSource;
 import com.google.gson.Gson;
@@ -39,14 +39,14 @@ import java.util.List;
  * 2017-09-29
  *
  */
-public class CounterListActivity extends AppCompatActivity implements CounterViewInterface {
+public class CounterListActivity extends AppCompatActivity implements CounterView {
 
     private final int EDIT_COUNTER_REQUEST_CODE = 1;
     private final int ADD_COUNTER_REQUEST_CODE = 2;
 
     private List<Counter> counterList;
     Controller controller;
-    CounterDataSourceInterface dataSource;
+    CounterDataSource dataSource;
 
     private LayoutInflater layoutInflater;
     private RecyclerView recyclerView;

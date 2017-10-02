@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Mackenzie on 2017-10-01.
  */
 
-public interface CounterDataSourceInterface {
+public interface CounterDataSource {
     List<Counter> loadCounters();
     void addCounter(Counter counter);
     void modifyCounterAt(int position, Counter modified);

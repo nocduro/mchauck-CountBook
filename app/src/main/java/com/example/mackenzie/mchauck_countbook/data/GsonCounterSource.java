@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * A class to store a list of Counter objects as a .json file
  */
-public class GsonCounterSource implements CounterDataSourceInterface {
+public class GsonCounterSource implements CounterDataSource {
     private ArrayList<Counter> counters;
     private String filename;
     private Gson gson;

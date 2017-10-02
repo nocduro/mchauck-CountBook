@@ -1,18 +1,18 @@
 package com.example.mackenzie.mchauck_countbook;
 
 import com.example.mackenzie.mchauck_countbook.data.Counter;
-import com.example.mackenzie.mchauck_countbook.data.CounterDataSourceInterface;
+import com.example.mackenzie.mchauck_countbook.data.CounterDataSource;
 import com.example.mackenzie.mchauck_countbook.data.CounterTooSmall;
-import com.example.mackenzie.mchauck_countbook.view.CounterViewInterface;
+import com.example.mackenzie.mchauck_countbook.view.CounterView;
 
 /**
  * Class to dispatch work to our data (model) and view when an event happens
  */
 public class Controller {
-    private CounterViewInterface view;
-    private CounterDataSourceInterface dataSource;
+    private CounterView view;
+    private CounterDataSource dataSource;
 
-    public Controller(CounterViewInterface view, CounterDataSourceInterface dataSource) {
+    public Controller(CounterView view, CounterDataSource dataSource) {
         this.view = view;
         this.dataSource = dataSource;
         view.setupView(dataSource.loadCounters());
